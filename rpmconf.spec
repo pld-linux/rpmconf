@@ -8,6 +8,7 @@ Group:		Applications
 Source0:	http://github.com/downloads/xsuchy/rpmconf/%{name}-%{version}.tar.gz
 # Source0-md5:	2a40cafc49b9bc008f3eb51b4d324d4e
 URL:		http://wiki.github.com/xsuchy/rpmconf/
+Requires:	which
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
