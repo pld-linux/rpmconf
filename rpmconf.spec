@@ -15,7 +15,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Tool to handle rpmnew and rpmsave files.
 
 What it does:
-- run “rpmconf —help” and you will see :)
+- run "rpmconf —help" and you will see :)
 - it search all config file of all installed packages and check if
   file with .rpmsave or .rpmnew exists
 - it allows you to see diff of this file against current file
@@ -29,7 +29,7 @@ What it does:
 Narzędzie do obsługi plików rpmnew oraz rpmsave.
 
 Co to robi:
-- uruchom “rpmconf —help” i sam zobaczysz :)
+- uruchom "rpmconf —help" i sam zobaczysz :)
 - wyszukuje wszytskie pliki konfiguracyjne wszystkich zainstalowanych
   paczek i sprawdza czy istnieje plik z rozszerzeniem .rpmsave lub
   .rpmnew
@@ -47,8 +47,7 @@ Co to robi:
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
-
-install rpmconf $RPM_BUILD_ROOT%{_bindir}
+install -p rpmconf $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
