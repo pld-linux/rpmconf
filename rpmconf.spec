@@ -1,12 +1,12 @@
 Summary:	Tool to handle rpmnew and rpmsave files
 Summary(pl.UTF-8):	Narzędzie do obsługi plików rpmnew oraz rpmsave
 Name:		rpmconf
-Version:	0.2.2
+Version:	0.3.3
 Release:	1
 License:	GPL v3+
 Group:		Applications
 Source0:	http://github.com/downloads/xsuchy/rpmconf/%{name}-%{version}.tar.gz
-# Source0-md5:	2a40cafc49b9bc008f3eb51b4d324d4e
+# Source0-md5:	e11cb57af45b028cf5ff8125360f19d3
 URL:		http://wiki.github.com/xsuchy/rpmconf/
 Requires:	which
 BuildArch:	noarch
@@ -16,7 +16,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Tool to handle rpmnew and rpmsave files.
 
 What it does:
-- run "rpmconf —help" and you will see :)
+- run "rpmconf --help" and you will see :)
 - it search all config file of all installed packages and check if
   file with .rpmsave or .rpmnew exists
 - it allows you to see diff of this file against current file
@@ -30,7 +30,7 @@ What it does:
 Narzędzie do obsługi plików rpmnew oraz rpmsave.
 
 Co to robi:
-- uruchom "rpmconf —help" i sam zobaczysz :)
+- uruchom "rpmconf --help" i sam zobaczysz :)
 - wyszukuje wszytskie pliki konfiguracyjne wszystkich zainstalowanych
   paczek i sprawdza czy istnieje plik z rozszerzeniem .rpmsave lub
   .rpmnew
