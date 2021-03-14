@@ -1,67 +1,92 @@
 Summary:	Tool to handle rpmnew and rpmsave files
 Summary(pl.UTF-8):	Narzędzie do obsługi plików rpmnew oraz rpmsave
 Name:		rpmconf
-Version:	0.3.3
-Release:	2
+Version:	1.1.4
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
-Source0:	http://github.com/downloads/xsuchy/rpmconf/%{name}-%{version}.tar.gz
-# Source0-md5:	e11cb57af45b028cf5ff8125360f19d3
-URL:		http://wiki.github.com/xsuchy/rpmconf/
+Source0:	https://github.com/xsuchy/rpmconf/archive/%{name}-%{version}-1/rpmconf-%{version}.tar.gz
+# Source0-md5:	625c1e39e6c65b0e7192f6b64c21c660
+URL:		https://github.com/xsuchy/rpmconf
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-utils
+BuildRequires:	python-modules
+BuildRequires:	python3-rpm
+BuildRequires:	sphinx-pdg
+%if %{with tests}
+BuildRequires:	python3-pylint
+BuildRequires:	python3-six
+%endif
+Requires:	python3-rpm
+Requires:	python3-rpmconf
 Requires:	which
+Suggests:	diffuse
+Suggests:	diffutils
+Suggests:	kdiff3
+Suggests:	meld
+Suggests:	vim-X11
+Suggests:	vim-enhanced
+# sdiff
+Suggests:	diffutils
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Tool to handle rpmnew and rpmsave files.
+This tool search for .rpmnew, .rpmsave and .rpmorig files and ask you
+what to do with them: Keep current version, place back old version,
+watch the diff or merge.
 
-What it does:
-- run "rpmconf --help" and you will see :)
-- it search all config file of all installed packages and check if
-  file with .rpmsave or .rpmnew exists,
-- it allows you to see diff of this file against current file,
-- it allows you to keep current version or the other one (rpmsave or
-  rpmnew one),
-- it deletes .rpmsave and .rpmnew files which are identical to current
-  file,
-- after your choice it deletes the unwanted file.
+%package -n python3-rpmconf
+Summary:	Python interface for %{name}
 
-%description -l pl.UTF-8
-Narzędzie do obsługi plików rpmnew oraz rpmsave.
+%description -n python3-rpmconf
+Python interface for %{name}. Mostly useful for developers only.
 
-Co to robi:
-- uruchom "rpmconf --help" i sam zobaczysz :)
-- wyszukuje wszystkie pliki konfiguracyjne wszystkich zainstalowanych
-  paczek i sprawdza, czy istnieje plik z rozszerzeniem .rpmsave lub
-  .rpmnew,
-- umożliwia wyświetlenie różnic między tym plikiem a plikiem aktualnie
-  używanym,
-- umożliwia pozostawienie aktualnie używanego pliku lub zamianę go na
-  inny (rpmsave lub rpmnew),
-- usuwa te pliki .rpmsave i .rpmnew, które są identyczne z aktualnie
-  używanym plikiem,
-- po dokonaniu przez użytkownika wyboru usuwa niechciane pliki.
+%package -n python3-rpmconf-doc
+Summary:	Documentation of python interface for %{name}
+
+%description -n python3-rpmconf-doc
+Documentation generated from code of python3-rpmconf.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{name}-%{version}-1
+
+%{__sed} -i -e 's/__version__ = .*/__version__ = "%{version}"/' rpmconf/rpmconf.py
+%{__sed} -i -e 's/version = .*,/version = "%{version}",/' setup.py
 
 %build
+%py3_build
+
 docbook2man rpmconf.sgml
+%{__make} -C docs html man
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man{3,8},%{_datadir}/rpmconf}
 
-install -p rpmconf $RPM_BUILD_ROOT%{_bindir}
-install -p rpmconf.8 $RPM_BUILD_ROOT%{_mandir}/man8
+%py3_install \
+	--install-scripts %{_sbindir} \
+	--root $RPM_BUILD_ROOT
+
+cp -p rpmconf.8 $RPM_BUILD_ROOT%{_mandir}/man8/rpmconf.8
+cp -p docs/build/man/rpmconf.3 $RPM_BUILD_ROOT%{_mandir}/man3/rpmconf.3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc TODO
-%attr(755,root,root) %{_bindir}/%{name}
-%{_mandir}/man8/%{name}.8*
+%doc README.md
+%attr(755,root,root) %{_sbindir}/rpmconf
+%dir %{_datadir}/rpmconf
+%{_mandir}/man8/rpmconf.8*
+
+%files -n python3-rpmconf
+%defattr(644,root,root,755)
+%{py3_sitescriptdir}/rpmconf
+%{py3_sitescriptdir}/rpmconf-*.egg-info
+%{_mandir}/man3/rpmconf.3*
+
+%files -n python3-rpmconf-doc
+%defattr(644,root,root,755)
+%doc docs/build/html
