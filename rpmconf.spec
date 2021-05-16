@@ -38,6 +38,7 @@ watch the diff or merge.
 
 %package -n python3-rpmconf
 Summary:	Python interface for %{name}
+Requires:	pydoc3
 
 %description -n python3-rpmconf
 Python interface for %{name}. Mostly useful for developers only.
