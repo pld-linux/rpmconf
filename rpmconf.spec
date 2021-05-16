@@ -10,7 +10,7 @@ Source0:	https://github.com/xsuchy/rpmconf/archive/%{name}-%{version}-1/rpmconf-
 URL:		https://github.com/xsuchy/rpmconf
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-utils
-BuildRequires:	python-modules
+BuildRequires:	python3-modules
 BuildRequires:	python3-rpm
 BuildRequires:	sphinx-pdg
 %if %{with tests}
