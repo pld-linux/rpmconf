@@ -54,6 +54,7 @@ Documentation generated from code of python3-rpmconf.
 
 %{__sed} -i -e 's/__version__ = .*/__version__ = "%{version}"/' rpmconf/rpmconf.py
 %{__sed} -i -e 's/version = .*,/version = "%{version}",/' setup.py
+%{__sed} -i -e 's@/usr/bin/ls@/bin/ls@' rpmconf/rpmconf.py
 
 %build
 %py3_build
