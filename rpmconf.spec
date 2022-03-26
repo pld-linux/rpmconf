@@ -2,7 +2,7 @@ Summary:	Tool to handle rpmnew and rpmsave files
 Summary(pl.UTF-8):	Narzędzie do obsługi plików rpmnew oraz rpmsave
 Name:		rpmconf
 Version:	1.1.4
-Release:	2
+Release:	3
 License:	GPL v3+
 Group:		Applications/System
 Source0:	https://github.com/xsuchy/rpmconf/archive/%{name}-%{version}-1/rpmconf-%{version}.tar.gz
