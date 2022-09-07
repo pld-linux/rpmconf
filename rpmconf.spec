@@ -2,7 +2,7 @@ Summary:	Tool to handle rpmnew and rpmsave files
 Summary(pl.UTF-8):	Narzędzie do obsługi plików rpmnew oraz rpmsave
 Name:		rpmconf
 Version:	1.1.6
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/System
 Source0:	https://github.com/xsuchy/rpmconf/archive/%{name}-%{version}-1/rpmconf-%{version}.tar.gz
@@ -18,7 +18,7 @@ BuildRequires:	python3-pylint
 BuildRequires:	python3-six
 %endif
 Requires:	python3-rpm
-Requires:	python3-rpmconf
+Requires:	python3-rpmconf = %{version}-%{release}
 Requires:	which
 Suggests:	diffuse
 Suggests:	diffutils
