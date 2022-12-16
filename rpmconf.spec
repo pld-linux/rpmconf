@@ -12,6 +12,7 @@ BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-utils
 BuildRequires:	python3-modules
 BuildRequires:	python3-rpm
+BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	sphinx-pdg
 %if %{with tests}
 BuildRequires:	python3-pylint
