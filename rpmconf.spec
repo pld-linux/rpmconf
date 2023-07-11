@@ -1,12 +1,12 @@
 Summary:	Tool to handle rpmnew and rpmsave files
 Summary(pl.UTF-8):	Narzędzie do obsługi plików rpmnew oraz rpmsave
 Name:		rpmconf
-Version:	1.1.8
+Version:	1.1.10
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	https://github.com/xsuchy/rpmconf/archive/%{name}-%{version}-1/rpmconf-%{version}.tar.gz
-# Source0-md5:	e86ba5c336ee75fd9b34557de90407d6
+# Source0-md5:	dcb8431688726c15ae372f274e2b68a4
 URL:		https://github.com/xsuchy/rpmconf
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	docbook-utils
